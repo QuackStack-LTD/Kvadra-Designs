@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>КВАДРА — Мебелно Студио</title>
+<meta name="description" content="Мебелно студио КВАДРА — Проектиране по интериорен проект, Производство и Монтаж на мебели по поръчка.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--primary:#1A1A1A;--primary-light:#333;--accent:#8B6914;--accent-light:#A88428;
+--bg:#FFFFFF;--bg-alt:#F7F5F0;--bg-warm:#EDE8DC;
+--text:#1A1A1A;--text-muted:#6B6560;--text-light:#99938B;
+--border:rgba(0,0,0,.08);--shadow:rgba(0,0,0,.06);--radius:12px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit;transition:color .3s}
+img{max-width:100%;display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 0;transition:all .4s;background:rgba(255,255,255,.6);backdrop-filter:blur(20px)}
+.nav.scrolled{background:rgba(255,255,255,.95);padding:12px 0;box-shadow:0 1px 30px var(--shadow)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;letter-spacing:2px;color:var(--primary)}
+.logo span{font-weight:400;font-size:.7rem;display:block;letter-spacing:4px;text-transform:uppercase;color:var(--text-muted);font-family:'Inter',sans-serif}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:.78rem;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-cta{background:var(--primary);color:#fff;padding:10px 24px;border-radius:50px;font-size:.78rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:all .3s}
+.nav-cta:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(138,105,20,.2)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:1001}
+.hamburger span{width:24px;height:2px;background:var(--primary);transition:.3s}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;overflow:hidden;background:var(--bg-alt)}
+.hero-bg{position:relative;overflow:hidden}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-bg::before{content:'';position:absolute;left:-1px;top:0;width:120px;height:100%;background:linear-gradient(to right,var(--bg-alt),transparent);z-index:1}
+.hero-content{display:flex;flex-direction:column;justify-content:center;padding:120px 48px 80px 64px}
+.hero-label{display:inline-flex;align-items:center;gap:8px;background:var(--bg-warm);padding:8px 20px;border-radius:50px;font-size:.72rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:32px;width:fit-content}
+.hero-label::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.05;margin-bottom:24px;letter-spacing:-1px;color:var(--primary)}
+.hero h1 .accent{color:var(--accent)}
+.hero p{font-size:1.05rem;color:var(--text-muted);max-width:440px;margin-bottom:40px;line-height:1.8}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:var(--primary);color:#fff;padding:15px 36px;border-radius:50px;font-size:.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;transition:all .3s;border:2px solid var(--primary)}
+.btn-primary:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(138,105,20,.18)}
+.btn-ghost{background:transparent;color:var(--primary);padding:15px 36px;border-radius:50px;font-size:.82rem;font-weight:500;letter-spacing:1px;text-transform:uppercase;border:2px solid var(--border);transition:all .3s}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:48px;margin-top:56px;padding-top:36px;border-top:1px solid var(--border)}
+.hero-stat .number{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:var(--accent);line-height:1}
+.hero-stat .label{font-size:.7rem;color:var(--text-light);text-transform:uppercase;letter-spacing:2px;margin-top:4px}
+
+/* SECTIONS */
+.section{padding:120px 0}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.section-label::before{content:'';width:40px;height:1px;background:var(--accent)}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,3rem);font-weight:700;line-height:1.15;margin-bottom:18px;color:var(--primary)}
+.section-subtitle{font-size:.95rem;color:var(--text-muted);max-width:540px;line-height:1.8;margin-bottom:56px}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:44px 32px;transition:all .4s;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-light));transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px var(--shadow);border-color:rgba(138,105,20,.15)}
+.service-icon{width:52px;height:52px;background:var(--bg-warm);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;margin-bottom:22px;font-size:1.4rem}
+.service-card h3{font-size:1.1rem;font-weight:600;margin-bottom:10px;color:var(--primary)}
+.service-card p{font-size:.88rem;color:var(--text-muted);line-height:1.7}
+
+/* ABOUT */
+.section-alt{background:var(--bg-alt)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-img{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5}
+.about-img img{width:100%;height:100%;object-fit:cover}
+.about-badge{position:absolute;bottom:24px;left:24px;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border:1px solid var(--border);padding:18px 24px;border-radius:var(--radius);box-shadow:0 8px 30px var(--shadow)}
+.about-badge .number{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--accent);line-height:1}
+.about-badge .text{font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted)}
+.about-features{display:flex;flex-direction:column;gap:16px;margin-bottom:36px}
+.about-feature{display:flex;align-items:flex-start;gap:14px}
+.about-feature .check{width:22px;height:22px;min-width:22px;background:var(--bg-warm);border:1px solid rgba(138,105,20,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:.65rem;margin-top:2px}
+.about-feature span{font-size:.9rem;color:var(--text-muted)}
+
+/* PORTFOLIO */
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.portfolio-item{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/3;cursor:pointer;box-shadow:0 4px 20px var(--shadow)}
+.portfolio-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.portfolio-item:hover img{transform:scale(1.06)}
+.portfolio-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,26,26,.85) 0%,transparent 55%);opacity:0;transition:opacity .4s;display:flex;align-items:flex-end;padding:24px}
+.portfolio-item:hover .portfolio-overlay{opacity:1}
+.portfolio-overlay span{font-size:.82rem;font-weight:500;letter-spacing:1px;color:#fff}
+
+/* TESTIMONIAL */
+.testimonial-section{background:var(--bg-warm)}
+.testimonial-inner{text-align:center;max-width:680px;margin:0 auto}
+.quote-mark{font-family:'Playfair Display',serif;font-size:5rem;color:var(--accent);line-height:1;opacity:.35;margin-bottom:-16px}
+.testimonial-text{font-family:'Playfair Display',serif;font-size:1.5rem;font-style:italic;line-height:1.6;margin-bottom:28px;color:var(--primary)}
+.testimonial-author{font-size:.82rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:2px}
+.testimonial-role{font-size:.78rem;color:var(--text-muted);margin-top:4px}
+
+/* CTA */
+.cta-section{position:relative;overflow:hidden}
+.cta-bg{position:absolute;inset:0}
+.cta-bg img{width:100%;height:100%;object-fit:cover}
+.cta-bg::after{content:'';position:absolute;inset:0;background:rgba(26,26,26,.82)}
+.cta-content{position:relative;z-index:1;text-align:center;max-width:620px;margin:0 auto}
+.cta-content .section-title{color:#fff;margin-bottom:14px}
+.cta-content .section-label{color:rgba(255,255,255,.6)}
+.cta-content .section-label::before{background:rgba(255,255,255,.4)}
+.cta-content p{color:rgba(255,255,255,.7);margin-bottom:36px;font-size:1rem}
+.cta-content .btn-primary{background:#fff;color:var(--primary);border-color:#fff}
+.cta-content .btn-primary:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.contact-info-item{display:flex;align-items:flex-start;gap:16px;margin-bottom:28px}
+.contact-icon{width:46px;height:46px;min-width:46px;background:var(--bg-warm);border:1px solid rgba(138,105,20,.12);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1rem}
+.contact-info-item h4{font-size:.68rem;text-transform:uppercase;letter-spacing:2px;color:var(--text-light);margin-bottom:3px}
+.contact-info-item p{font-size:.95rem;color:var(--primary)}
+.contact-info-item a{color:var(--accent)}
+.contact-info-item a:hover{color:var(--accent-light)}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group input,.form-group textarea{width:100%;background:var(--bg-alt);border:1px solid var(--border);border-radius:var(--radius);padding:15px 18px;color:var(--primary);font-family:'Inter',sans-serif;font-size:.88rem;transition:border-color .3s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent);background:var(--bg)}
+.form-group textarea{resize:vertical;min-height:130px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:var(--text-light)}
+.btn-submit{background:var(--primary);color:#fff;padding:15px 44px;border-radius:50px;border:none;font-size:.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .3s;align-self:flex-start;font-family:'Inter',sans-serif}
+.btn-submit:hover{background:var(--accent);transform:translateY(-2px);box-shadow:0 8px 24px rgba(138,105,20,.18)}
+
+/* FOOTER */
+footer{background:var(--primary);color:#fff;padding:60px 0 28px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:44px}
+.footer-brand .logo{color:#fff;margin-bottom:14px}
+.footer-brand .logo span{color:rgba(255,255,255,.45)}
+.footer-brand p{font-size:.83rem;color:rgba(255,255,255,.5);max-width:280px;line-height:1.7}
+.footer-col h4{font-size:.72rem;text-transform:uppercase;letter-spacing:3px;color:var(--accent-light);margin-bottom:18px;font-weight:600}
+.footer-col a{display:block;font-size:.87rem;color:rgba(255,255,255,.5);margin-bottom:11px;transition:color .3s}
+.footer-col a:hover{color:#fff}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;align-items:center}
+.footer-bottom p{font-size:.78rem;color:rgba(255,255,255,.35)}
+.social-links{display:flex;gap:14px}
+.social-links a{width:38px;height:38px;border:1px solid rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.82rem;transition:all .3s}
+.social-links a:hover{border-color:var(--accent-light);color:var(--accent-light);transform:translateY(-3px)}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(255,255,255,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mobile-menu.active{display:flex}
+.mobile-menu a{font-size:1.15rem;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--text-muted);transition:color .3s}
+.mobile-menu a:hover{color:var(--accent)}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(36px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:992px){
+.nav-links{display:none}
+.hamburger{display:flex}
+.services-grid,.portfolio-grid{grid-template-columns:1fr 1fr}
+.about-grid{grid-template-columns:1fr;gap:40px}
+.contact-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr 1fr}
+.hero{grid-template-columns:1fr}
+.hero-bg{position:absolute;inset:0;opacity:.2}
+.hero-bg::before{display:none}
+.hero{position:relative;background:var(--bg-alt)}
+.hero-content{padding:120px 24px 80px}
+.hero-stats{gap:28px}
+}
+@media(max-width:640px){
+.services-grid,.portfolio-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr}
+.hero-stats{flex-direction:column;gap:20px}
+.hero h1{font-size:2.5rem}
+.form-row{grid-template-columns:1fr}
+.section{padding:80px 0}
+.hero-btns{flex-direction:column}
+.btn-primary,.btn-ghost{text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav class="nav" id="navbar">
+<div class="nav-inner">
+<a href="#" class="logo">КВАДРА<span>мебелно студио</span></a>
+<div class="nav-links">
+<a href="#hero" class="active">НАЧАЛО</a>
+<a href="#about">ЗА НАС</a>
+<a href="#services">УСЛУГИ</a>
+<a href="#portfolio">ПОРТФОЛИО</a>
+<a href="#contact">КОНТАКТИ</a>
+</div>
+<a href="tel:+359888080217" class="nav-cta">Обадете ни се</a>
+<div class="hamburger" onclick="toggleMenu()">
+<span></span><span></span><span></span>
+</div>
+</div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+<a href="#hero" onclick="toggleMenu()">НАЧАЛО</a>
+<a href="#about" onclick="toggleMenu()">ЗА НАС</a>
+<a href="#services" onclick="toggleMenu()">УСЛУГИ</a>
+<a href="#portfolio" onclick="toggleMenu()">ПОРТФОЛИО</a>
+<a href="#contact" onclick="toggleMenu()">КОНТАКТИ</a>
+<a href="tel:+359888080217" class="nav-cta" onclick="toggleMenu()">+359 888 080 217</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+<div class="hero-content">
+<div class="hero-label">Мебели по поръчка</div>
+<h1>Мебелно Студио <span class="accent">Квадра</span></h1>
+<p>Проектираме, произвеждаме и монтираме мебели по поръчка. Превръщаме вашите идеи в реалност с прецизност и внимание към всеки детайл.</p>
+<div class="hero-btns">
+<a href="#contact" class="btn-primary">Поръчай сега</a>
+<a href="#services" class="btn-ghost">Нашите услуги</a>
+</div>
+<div class="hero-stats">
+<div class="hero-stat"><div class="number">150+</div><div class="label">Реализирани проекта</div></div>
+<div class="hero-stat"><div class="number">100%</div><div class="label">Доволни клиенти</div></div>
+<div class="hero-stat"><div class="number">10+</div><div class="label">Години опит</div></div>
+</div>
+</div>
+<div class="hero-bg"><img src="hero_kitchen.png" alt="Модерна кухня от Квадра"></div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+<div class="container">
+<div class="reveal">
+<div class="section-label">какво правим</div>
+<h2 class="section-title">Услуги</h2>
+<p class="section-subtitle">Предлагаме цялостни решения — от идеята до завършения продукт. Всеки проект е уникален и създаден специално за вас.</p>
+</div>
+<div class="services-grid">
+<div class="service-card reveal">
+<div class="service-icon">📐</div>
+<h3>Проектиране по интериорен проект</h3>
+<p>Създаваме детайлни проекти, съобразени с вашия интериор, стил на живот и функционални нужди. Всяко пространство е обмислено до последния детайл.</p>
+</div>
+<div class="service-card reveal">
+<div class="service-icon">🔨</div>
+<h3>Производство</h3>
+<p>Произвеждаме висококачествени мебели от първокласни материали в нашата модерна работилница. Прецизност и майсторство във всеки детайл.</p>
+</div>
+<div class="service-card reveal">
+<div class="service-icon">🏠</div>
+<h3>Монтаж</h3>
+<p>Професионален монтаж на място от нашия опитен екип. Грижим се за безупречна инсталация и перфектен краен резултат.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="section section-alt" id="about">
+<div class="container">
+<div class="about-grid">
+<div class="about-img reveal">
+<img src="craftsmanship.png" alt="Майсторство в изработката">
+<div class="about-badge"><div class="number">10+</div><div class="text">Години опит</div></div>
+</div>
+<div class="about-content reveal">
+<div class="section-label">за нас</div>
+<h2 class="section-title">Ние сме екип от професионалисти, обединени от страстта към перфектните мебели</h2>
+<p class="section-subtitle">Работим заедно по всеки проект, за да гарантираме на нашите клиенти най-добрия резултат. Нашата мисия е да създаваме мебели, които съчетават естетика и функционалност.</p>
+<div class="about-features">
+<div class="about-feature"><div class="check">✓</div><span>Индивидуален подход към всеки клиент и проект</span></div>
+<div class="about-feature"><div class="check">✓</div><span>Висококачествени материали от реномирани производители</span></div>
+<div class="about-feature"><div class="check">✓</div><span>Прецизност в изработката и вниманието към детайла</span></div>
+<div class="about-feature"><div class="check">✓</div><span>Гаранция за качество и навременна доставка</span></div>
+</div>
+<a href="#contact" class="btn-primary">Свържете се с нас</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="section" id="portfolio">
+<div class="container">
+<div class="reveal" style="text-align:center;margin-bottom:52px">
+<div class="section-label" style="justify-content:center">нашите проекти</div>
+<h2 class="section-title">Портфолио</h2>
+<p class="section-subtitle" style="margin:0 auto">Разгледайте някои от нашите завършени проекти — всяка реализация е уникално решение, съобразено с нуждите на клиента.</p>
+</div>
+<div class="portfolio-grid">
+<div class="portfolio-item reveal"><img src="hero_kitchen.png" alt="Кухня по поръчка"><div class="portfolio-overlay"><span>Модерна кухня</span></div></div>
+<div class="portfolio-item reveal"><img src="living_room_interior.png" alt="Интериор дневна"><div class="portfolio-overlay"><span>Обзавеждане на дневна</span></div></div>
+<div class="portfolio-item reveal"><img src="craftsmanship.png" alt="Детайли"><div class="portfolio-overlay"><span>Ръчна изработка</span></div></div>
+</div>
+</div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="section testimonial-section">
+<div class="container">
+<div class="testimonial-inner reveal">
+<div class="quote-mark">"</div>
+<p class="testimonial-text">Просто са страхотни</p>
+<div class="testimonial-author">Др. Таня Димитрова</div>
+<div class="testimonial-role">Клиент на Мебелно студио Квадра</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+<div class="cta-bg"><img src="living_room_interior.png" alt="Интериор"></div>
+<div class="container cta-content reveal">
+<div class="section-label" style="justify-content:center">вашият проект</div>
+<h2 class="section-title">Искате да направите консултация?</h2>
+<p>Запазете час директно във вашия апартамент. Ще ви помогнем да реализирате мечтания интериор.</p>
+<a href="#contact" class="btn-primary">Свържете се с нас</a>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section section-alt" id="contact">
+<div class="container">
+<div class="reveal" style="text-align:center;margin-bottom:52px">
+<div class="section-label" style="justify-content:center">свържете се</div>
+<h2 class="section-title">Контакти</h2>
+<p class="section-subtitle" style="margin:0 auto">Изпратете ни съобщение или ни се обадете — ще се радваме да обсъдим вашия проект.</p>
+</div>
+<div class="contact-grid">
+<div class="reveal">
+<div class="contact-info-item">
+<div class="contact-icon">✉</div>
+<div><h4>имейл</h4><p><a href="mailto:office@kvadra.bg">office@kvadra.bg</a></p></div>
+</div>
+<div class="contact-info-item">
+<div class="contact-icon">📞</div>
+<div><h4>телефон</h4><p><a href="tel:+359888080217">+359 888 080 217</a></p></div>
+</div>
+<div class="contact-info-item">
+<div class="contact-icon">📍</div>
+<div><h4>Къде се намираме</h4><p>София, България</p></div>
+</div>
+<div style="display:flex;gap:12px;margin-top:20px">
+<a href="#" style="width:38px;height:38px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all .3s" title="Instagram">📷</a>
+<a href="#" style="width:38px;height:38px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:all .3s" title="Youtube">▶</a>
+</div>
+</div>
+<form class="contact-form reveal" onsubmit="event.preventDefault()">
+<div class="form-row">
+<div class="form-group"><input type="text" placeholder="Вашето име" required></div>
+<div class="form-group"><input type="email" placeholder="Имейл адрес" required></div>
+</div>
+<div class="form-group"><input type="text" placeholder="Тема"></div>
+<div class="form-group"><textarea placeholder="Вашето съобщение..." rows="5"></textarea></div>
+<button type="submit" class="btn-submit">Изпрати съобщение</button>
+</form>
+</div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="logo">КВАДРА<span>мебелно студио</span></div>
+<p>Проектиране, производство и монтаж на мебели по поръчка. Превръщаме вашите идеи в реалност.</p>
+</div>
+<div class="footer-col">
+<h4>Навигация</h4>
+<a href="#hero">Начало</a>
+<a href="#about">За нас</a>
+<a href="#services">Услуги</a>
+<a href="#portfolio">Портфолио</a>
+<a href="#contact">Контакти</a>
+</div>
+<div class="footer-col">
+<h4>Услуги</h4>
+<a href="#services">Проектиране</a>
+<a href="#services">Производство</a>
+<a href="#services">Монтаж</a>
+<a href="#contact">Консултация</a>
+</div>
+</div>
+<div class="footer-bottom">
+<p>&copy; 2025 Мебелно студио Квадра. Всички права запазени.</p>
+<div class="social-links">
+<a href="#" title="Instagram">📷</a>
+<a href="#" title="Youtube">▶</a>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>{
+document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50)
+});
+function toggleMenu(){
+document.getElementById('mobileMenu').classList.toggle('active');
+}
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver((entries)=>{
+entries.forEach((e,i)=>{
+if(e.isIntersecting){
+setTimeout(()=>e.target.classList.add('visible'),i*80);
+observer.unobserve(e.target);
+}
+});
+},{threshold:0.15,rootMargin:'0px 0px -40px 0px'});
+reveals.forEach(el=>observer.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+a.addEventListener('click',e=>{
+e.preventDefault();
+const t=document.querySelector(a.getAttribute('href'));
+if(t)t.scrollIntoView({behavior:'smooth'});
+});
+});
+</script>
+</body>
+</html>
